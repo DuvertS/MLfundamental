@@ -1,16 +1,26 @@
 <p align="center">
   <img src="images/couverture.png" alt="Page de couverture du projet" width="100%">
 </p>
-# Ames Housing Price Prediction - ML Fundamentals Checkpoint
 
-This project is a machine learning assessment notebook designed to build, train, and evaluate a **Ridge Regression model** to predict home prices (`SalePrice`) using the Ames Housing dataset.
+#  Ames Housing Price Prediction - ML Fundamentals Checkpoint
+
+Ce projet est un checkpoint d'évaluation axé sur les **fondations du Machine Learning**. L'objectif principal est de construire, d'entraîner et d'évaluer un modèle de régression régularisée (**Ridge Regression**) afin de prédire le prix de vente des maisons (`SalePrice`) en utilisant le jeu de données *Ames Housing*.
 
 ---
 
-##  Tech Stack & Dependencies
-The codebase is implemented in **Python 3** within a Jupyter Notebook environment and relies on the following standard libraries:
-* **Pandas & NumPy**: For data loading, manipulation, and array formatting.
-* **Scikit-Learn (sklearn)**: For the complete predictive modeling pipeline:
+##  Objectifs Pédagogiques & Techniques
+Le projet couvre les étapes fondamentales du flux de travail en science des données [1] :
+- **Séparation des données** : Validation croisée via un découpage entraînement/test (*train-test split*) pour évaluer la capacité de généralisation.
+- **Prétraitement des données** : Standardisation des caractéristiques numériques à l'aide de `StandardScaler` pour éviter les biais liés aux échelles.
+- **Régularisation (L2)** : Application de la régression Ridge pour limiter le surapprentissage (*overfitting*).
+- **Évaluation** : Analyse de la performance du modèle à l'aide des métriques **R² (Coefficient de détermination)** et **RMSE (Root Mean Squared Error)**.
+
+---
+
+##  Stack Technique
+Le projet est développé en **Python 3** au sein d'un environnement Jupyter Notebook (`.ipynb`) [1] et s'appuie sur les bibliothèques standards suivantes :
+* **Pandas & NumPy** : Pour l'exploration, le nettoyage et la manipulation des données.
+* **Scikit-Learn (sklearn)** : 
   * `model_selection.train_test_split` [1]
   * `preprocessing.StandardScaler` [1]
   * `linear_model.Ridge` [1]
@@ -18,32 +28,29 @@ The codebase is implemented in **Python 3** within a Jupyter Notebook environmen
 
 ---
 
-##  Code Structure & Pipeline
+##  Structure et Pipeline du Code
 
-The script processes the data through a 5-step workflow, validated at each stage by integrated `assert` test blocks:
+Le notebook est structuré en 5 étapes clés guidées par des tests de validation intégrés (`assert`) [1] :
 
-### 1. Data Cleaning & Train-Test Split
-* **Filtering**: Loads `ames.csv`, keeping only numeric features and columns with zero missing values.
-* **Segmentation**: Splits the dataframe into features (`X`) and the target variable (`y = SalePrice`).
-* **Splitting**: Segregates data into training (60%) and testing (40%) sets with a fixed `random_state=42`.
+### 1. Chargement et Nettoyage Initial
+Seules les données numériques sans valeurs manquantes sont conservées pour l'exercice. Le dataset est ensuite séparé en variables explicatives (`X`) et variable cible (`y = SalePrice`), suivi d'un découpage à **40% pour le jeu de test** (Random State: 42).
 
-### 2. Data Preprocessing (Scaling)
-* Instantiates a `StandardScaler`.
-* Fits and transforms the training features (`X_train`).
-* Transforms the testing features (`X_test`) independently to prevent data leakage.
+### 2. Standardisation (Scaling)
+Instanciation d'un `StandardScaler` ajusté uniquement sur le jeu d'entraînement (`X_train`) afin d'éviter les fuites de données (*data leakage*), puis appliqué sur `X_train` et `X_test`.
 
-### 3. Ridge Model Training
-* Fits a `Ridge` regression model using L2 regularization to penalize high coefficients and prevent overfitting.
-* **Hyperparameters**: Configured with `alpha=100`, `solver="sag"` (Stochastic Average Gradient descent), and `random_state=1`.
+### 3. Entraînement du Modèle Ridge
+Configuration et ajustement du modèle avec les hyperparamètres spécifiques [1] :
+* `alpha = 100` (Force de la pénalité de régularisation) [1]
+* `solver = "sag"` (Stochastic Average Gradient Descent) [1]
+* `random_state = 1` [1]
 
-### 4. Performance Evaluation
-* Generates predictions for both the scaled training and testing data subsets.
-* Computes performance metrics using **Root Mean Squared Error (RMSE)** and **R-squared (R²)**.
+### 4. Évaluation des Performances
+Génération des prédictions et calcul des scores d'erreurs (RMSE et R²) sur les deux ensembles de données pour mesurer précisément la précision et détecter un éventuel surapprentissage.
 
-### 5. Model Interpretation & Benchmark
-* Compares the evaluation metrics against a baseline Ordinary Least Squares (OLS) Linear Regression model:
+### 5. Interprétation & Comparaison
+Analyse comparative finale entre un modèle classique de Régression Linéaire et la Régression Ridge pour déterminer la meilleure approche en contexte prédictif [1] :
 
-| Model | Train RMSE | Test RMSE |
+| Modèle | RMSE Entraînement | RMSE Test |
 | :--- | :---: | :---: |
 | **Linear Regression** | \$33,633.14 | \$39,255.80 |
 | **Ridge Regression** | \$33,910.84 | \$39,213.66 |
