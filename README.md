@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="images/couverture.png" alt="Page de couverture du projet" width="100%">
-</p>
+![Page de couverture du projet](images/couverture.png)
 
 #  Ames Housing Price Prediction - ML Fundamentals Checkpoint
 
