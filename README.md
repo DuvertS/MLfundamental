@@ -1,4 +1,4 @@
-![Page de couverture du projet](images/couverture.png)
+images/couverture.png
 
 # Ames Housing Price Prediction - ML Fundamentals Checkpoint
 
