@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="images/couverture.PNG" alt="Page de couverture du projet" width="100%">
-</p>
+![Page de couverture du projet](images/couverture.PNG)
 # Ames Housing Price Prediction - ML Fundamentals Checkpoint
 
 This project is a machine learning assessment notebook designed to build, train, and evaluate a **Ridge Regression model** to predict home prices (`SalePrice`) using the Ames Housing dataset.
